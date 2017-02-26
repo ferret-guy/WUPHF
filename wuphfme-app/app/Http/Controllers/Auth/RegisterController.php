@@ -6,6 +6,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use App\Providers\WuphfUser;
 use Aws\DynamoDb\Marshaler;
 
@@ -65,14 +67,18 @@ class RegisterController extends Controller
     {
 		$marshal = new Marshaler();
 		$ddb = \AWS::createClient("DynamoDb");
+		try{
 		$ddb->putItem(array(
 			'TableName' => 'woof',
 			'Item' => array(
 				'username'   => array('S' => $data['username']),
 				'password' => array('S' => bcrypt($data['password'])),
-				'remember_token' => array('S' => "none")
-			)
+				'remember_token' => array('S' => "none"),
+				'associated' => ['L'=>[['S'=>$data['username']]]]
+			),
+			'ConditionExpression' => 'attribute_not_exists(username)'
 		));
+		}catch(\Exception $ex){return null;}
 		$record = $marshal->unmarshalItem($ddb->getItem(array(
 			'ConsistentRead' => true,
 			'TableName' => 'woof',
@@ -81,5 +87,21 @@ class RegisterController extends Controller
 			)
 		))->toArray()["Item"]);
 		return new WuphfUser($record);
+    }
+	
+	public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+		
+		$inter = $this->create($request->all());
+		if(empty($inter)) return redirect("/register")
+			->withErrors(Array("username"=>Array("That name is taken.")));
+		
+        event(new Registered($user = $inter));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 }
