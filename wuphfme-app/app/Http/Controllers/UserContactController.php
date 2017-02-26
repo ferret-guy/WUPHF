@@ -21,12 +21,13 @@ class UserContactController extends Controller
 		if(\Auth::guest()) return response("unauthenticated", 403); //implement authentication
 		if(empty($request->input("username"))) return response("badval", 403);
 		$ddb = \AWS::createClient("DynamoDb");
-		//try{
+		try{
 		$ddb->putItem(array(
 			'TableName' => 'woof',
 			'Item' => array(
 				'username' => array('S' => $request->input("username"))
-			)
+			),
+			'ConditionExpression' => 'attribute_not_exists(username)'
 		));
 		$ddb->updateItem(array(
 			'ConsistentRead' => true,
@@ -42,7 +43,10 @@ class UserContactController extends Controller
 			],
 			'UpdateExpression'=>"SET #TK = list_append(#TK, :val)"
 		));
-		//}catch(\Exception $ex){}
+		}catch(\Exception $ex){
+			return redirect("/manage")
+			->withErrors(Array("username"=>Array("That name is taken.")));
+		}
 		return redirect("/manage");
 	}
 	
