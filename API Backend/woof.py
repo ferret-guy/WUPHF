@@ -31,7 +31,6 @@ class APIDatabase:
 
 	@table.setter
 	def table(self, db):
-		logger.debug('Set table to {}'.format(db))
 		if db is not None:
 			self.table = self.dynamodb.Table(db)
 		else:
@@ -57,4 +56,22 @@ class APIDatabase:
 
 
 if __name__ == "__main__":
-	pass
+	import os
+	os.environ['table'] = "woof"
+	with open("creds", "r") as f:
+		data = json.load(f)
+		for key in data:
+			os.environ[key] = data[key]
+	table = boto3.resource(
+		'dynamodb',
+		region_name="us-east-1",
+		aws_access_key_id=os.environ['ACCESS_KEY'],
+		aws_secret_access_key=os.environ['SECRET_KEY']
+	).Table(os.environ['table'])
+
+	table.update_item(Key={"username": "ferret_guy"},
+					UpdateExpression='SET snapchat = :val1',
+					ExpressionAttributeValues={
+						':val1': {"username": "test"}
+					})
+
