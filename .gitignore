@@ -87,3 +87,4 @@ ENV/
 
 # Rope project settings
 .ropeproject
+wuphfme-app/config/aws.php
