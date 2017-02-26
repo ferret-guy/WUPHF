@@ -6,7 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Auth\GenericUser;
+use App\Providers\WuphfUser;
 use Aws\DynamoDb\Marshaler;
 
 class RegisterController extends Controller
@@ -80,6 +80,6 @@ class RegisterController extends Controller
 				'username'   => array('S' => $data['username'])
 			)
 		))->toArray()["Item"]);
-		return new GenericUser($record);
+		return new WuphfUser($record);
     }
 }

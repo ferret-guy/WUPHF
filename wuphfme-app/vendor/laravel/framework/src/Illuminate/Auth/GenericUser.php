@@ -31,7 +31,7 @@ class GenericUser implements UserContract
      */
     public function getAuthIdentifierName()
     {
-        return 'username';
+        return 'id';
     }
 
     /**

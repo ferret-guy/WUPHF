@@ -36,8 +36,6 @@ trait CreatesUserProviders
                 return $this->createDatabaseProvider($config);
             case 'eloquent':
                 return $this->createEloquentProvider($config);
-            case 'dynamo':
-                return $this->createDynamoProvider($config);
             default:
                 throw new InvalidArgumentException("Authentication user provider [{$config['driver']}] is not defined.");
         }
@@ -65,17 +63,5 @@ trait CreatesUserProviders
     protected function createEloquentProvider($config)
     {
         return new EloquentUserProvider($this->app['hash'], $config['model']);
-    }
-	
-	/**
-     * Create an instance of the Dynamo user provider.
-     *
-     * @param  array  $config
-     * @return \Illuminate\Auth\DynamoUserProvider
-     */
-    protected function createDynamoProvider($config)
-    {
-		$connection = $this->app['aws']->createClient("DynamoDb");
-        return new DynamoUserProvider($connection, $this->app['hash'], $config['table']);
     }
 }

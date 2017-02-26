@@ -177,7 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 		Aws\Laravel\AwsServiceProvider::class,
-		App\Providers\DynamoSessionServiceProvider::class
+		App\Providers\DynamoSessionServiceProvider::class,
+		App\Providers\DynamoAuthServiceProvider::class,
 
     ],
 

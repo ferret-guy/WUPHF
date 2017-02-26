@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Auth;
+namespace App\Providers;
 
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Auth\UserProvider;
@@ -151,12 +151,12 @@ class DynamoUserProvider implements UserProvider
      * Get the generic user.
      *
      * @param  mixed  $user
-     * @return \Illuminate\Auth\GenericUser|null
+     * @return \App\Providers\WuphfUser|null
      */
     protected function getGenericUser($user)
     {
         if (! is_null($user)) {
-            return new GenericUser((array) $user);
+            return new WuphfUser((array) $user);
         }
     }
 

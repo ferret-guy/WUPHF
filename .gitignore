@@ -98,3 +98,5 @@ wuphfme-app/public/web.config
 wuphfme-app/phpunit.xml
 wuphfme-app/composer.lock
 wuphfme-app/config/aws.php
+wuphfme-app/public/css/app.css
+wuphfme-app/public/css/app.css
