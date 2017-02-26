@@ -39,6 +39,31 @@
 				</div>
 			</div>
 			@endforeach
+			<form method="POST" action="/createuser">
+			{{ csrf_field() }}
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="panel panel-default">
+							<div class="panel-heading">Create User</div>
+							<div class="panel-body">
+								<div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+									<label for="username" class="col-md-4 control-label">Username</label>
+										<input style="display: inline-block;width: 40%;" id="username" type="text" class="form-control" name="username" value="" required>
+						
+										@if ($errors->has('username'))
+											<span class="help-block">
+												<strong>{{ $errors->first('username') }}</strong>
+											</span>
+										@endif
+										<button style="float: right;" type="submit" class="btn btn-primary">
+											Create
+										</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 	<script>window.Laravel={csrfToken:"{{ csrf_token() }}"};</script>

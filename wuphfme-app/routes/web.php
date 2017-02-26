@@ -25,9 +25,11 @@ Route::get('manage', function () {
     return view('manage');
 });
 
+Route::post('createuser', "UserContactController@create");
 Route::post('contacts/{user}/{method}/{key}', "UserContactController@set");
-Route::get('contacts/{user}/{method}/{key}', "UserContactController@get");// Authentication Routes...
+Route::get('contacts/{user}/{method}/{key}', "UserContactController@get");
 
+// Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
