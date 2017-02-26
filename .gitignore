@@ -88,3 +88,13 @@ ENV/
 # Rope project settings
 .ropeproject
 wuphfme-app/config/aws.php
+wuphfme-app/yarn.lock
+wuphfme-app/tests/Unit/ExampleTest.php
+wuphfme-app/tests/Feature/ExampleTest.php
+wuphfme-app/tests/TestCase.php
+wuphfme-app/tests/CreatesApplication.php
+wuphfme-app/resources/assets/js/components/Example.vue
+wuphfme-app/public/web.config
+wuphfme-app/phpunit.xml
+wuphfme-app/composer.lock
+wuphfme-app/config/aws.php
