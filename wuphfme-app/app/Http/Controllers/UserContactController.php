@@ -13,7 +13,8 @@ class UserContactController extends Controller
 		"sms",
 		"email",
 		"tweet",
-		"snapchat"
+		"snapchat",
+		"print"
 	];
 	
     /**
@@ -24,7 +25,7 @@ class UserContactController extends Controller
      */
     public function set(Request $request, $user, $method, $key)
     {
-		if(false) return response("unauthenticated", 403); //implement authentication
+		if(\Auth::guest()) return response("unauthenticated", 403); //implement authentication
 		if(!in_array($method, $this->validAPIs)) return response("badapi", 403); //bad api
 		$ddb = \AWS::createClient("DynamoDb");
 		$reuslt = $ddb->updateItem(array(
@@ -52,7 +53,7 @@ class UserContactController extends Controller
      */
     public function get(Request $request, $user, $method, $key)
     {
-		if(false) return response("unauthenticated", 403); //implement authentication
+		if(\Auth::guest()) return response("unauthenticated", 403); //implement authentication
 		if(!in_array($method, $this->validAPIs)) return response("badapi", 403); //bad api
 		$ddb = \AWS::createClient("DynamoDb");
 		$why_would_you_design_it_this_way = new Marshaler();
