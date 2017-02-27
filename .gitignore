@@ -86,8 +86,7 @@ ENV/
 .spyderproject
 
 # Rope project settings
-.ropeproject
-wuphfme-app/config/aws.php
+.ropeprojectwuphfme-app/config/aws.php
 wuphfme-app/yarn.lock
 wuphfme-app/tests/Unit/ExampleTest.php
 wuphfme-app/tests/Feature/ExampleTest.php
@@ -102,3 +101,17 @@ wuphfme-app/public/css/app.css
 wuphfme-app/public/css/app.css
 wuphfme-app/config/aws.php
 wuphfme-app/public/css/app.css
+/API Backend/creds
+/API Backend/twilio-5.7.0.dist-info/
+/API Backend/twilio/
+/API Backend/six-1.10.0.dist-info/
+/API Backend/pytz-2016.10.dist-info/
+/API Backend/pytz/
+/API Backend/httplib2-0.10.3.dist-info/
+/API Backend/httplib2/
+/API Backend/requests/
+/API Backend/requests_oauthlib/
+/API Backend/oauthlib/
+/API Backend/twython/
+/API Backend/fpdf/
+/API Backend/woof.py
