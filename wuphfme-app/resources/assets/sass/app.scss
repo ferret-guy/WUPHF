@@ -1,0 +1,137 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+html {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+    background-color: #fff;
+    font-family: Segoe UI, Calibri, sans-serif;
+    font-weight: 100;
+    margin: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+$headerht: 40px;
+$brand_indigo: #524a93;
+$brand_orange: #f57025;
+
+div.w-content{
+	@media (max-width: 767px){
+		width: 100%;
+		margin: 0 0;
+		text-align: center;
+	}
+	@media (min-width: 768px){
+		width: 90%;
+		max-width: 1920px;
+		margin: 0 auto;
+	}
+}
+
+#w-header {
+	flex-grow: 0;
+	width: 100%;
+	height: $headerht+18;
+	border-bottom: 3px solid $brand_indigo;
+	background: #f8f8f8;
+	
+	div.w-content{
+		padding: 10px 0 5px 0;
+		height: $headerht+15;
+		
+		span{
+			display: inline-block;
+			height: $headerht;
+			margin: 0 10px;
+		}
+		
+		span.w-actions{
+			display: inline-block;
+			float: right;
+			color: #666;
+			font-weight: 400;
+			
+			a{
+				color: inherit;
+			}
+			
+			div{
+				box-sizing: border-box;
+				height: 20px;
+				margin-top: max(0, $headerht / 2 - 20px);
+				text-align: right;
+			}
+		}
+	}
+}
+
+#w-main{
+	flex-grow: 2;
+	display: flex;
+	flex-direction: column;
+	background: #e8e8e8;
+	overflow: auto;
+	
+	div.w-content{
+		@media (max-width: 767px){
+			font-size: 1.5em;
+		}
+		flex-grow: 1;
+		box-sizing: border-box;
+		box-shadow: 0 0 8px 0 #555;
+		background: #fff;
+		padding: 10px;
+		text-align: center;
+	}
+}
+
+#w-lead{
+	color: #111;
+	font-size: 4em;
+	margin-top: 3em;
+	@media (max-width: 767px){
+		font-size: 2em;
+		margin-top: 1em;
+	}
+	font-weight: 900;
+}
+
+.w-action-button{
+	border: 0.083em solid $brand_indigo;
+	border-radius: 0.166em;
+	background: none;
+	color: $brand-orange;
+	display: inline-block;
+	height: 1.75em;
+	line-height: 1.7em;
+	width: 8.5em;
+	font-size: 1.5em;
+	@media (max-width: 767px){
+		font-size: 1.25em;
+	}
+	font-family: inherit;
+	font-weight: 400;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+.success-msg{
+	color: #3d3;
+    font-weight: 400;
+    font-size: 1.125em;
+}
